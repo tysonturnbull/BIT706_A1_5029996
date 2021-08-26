@@ -11,9 +11,6 @@ namespace BIT706_A1_5029996
         public double balance;
         protected static int nextID = 1;
         protected int iD;
-        
-
-       
 
         public Account() //Default creates an ID for each account
         {
