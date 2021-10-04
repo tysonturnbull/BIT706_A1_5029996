@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BIT706_A1_5029996
+﻿namespace BIT706_A1_5029996
 {
     public abstract class Account
     { 
@@ -62,7 +56,7 @@ namespace BIT706_A1_5029996
     public class Investment : Account
     {
         private double interestRate;
-        private double fees;
+        private double fees = 10;
         private double overdraft = 0;
 
         public Investment(double newBalance) : base(newBalance) 
@@ -70,10 +64,9 @@ namespace BIT706_A1_5029996
             overdraft = 0;
         }
 
-        public Investment(double newBalance, double newIR, double newFees):this(newBalance)
+        public Investment(double newBalance, double newIR):this(newBalance)
         {
             interestRate = newIR;
-            fees = newFees;
             balance += interestRate * balance;
         }
 
@@ -106,23 +99,24 @@ namespace BIT706_A1_5029996
     public class Omni : Account
     {
         private double interestRate;
-        private double fees;
+        private double fees = 10;
         private double overdraft;
         public Omni(double newBalance) : base(newBalance) { }
 
-        public Omni(double newBalance, double newIR, double newFees, double newOD) : this(newBalance)
+        public Omni(double newBalance, double newIR, double newOD) : this(newBalance)
         {
             if(newBalance > 1000)
             {
                 interestRate = newIR;
+                balance += balance * interestRate;
             }
             else
             {
                 interestRate = 0;
+                balance = newBalance;
             }
 
             overdraft = newOD;
-            fees = newFees;
         }
         public override string Info()
         {
@@ -137,7 +131,7 @@ namespace BIT706_A1_5029996
 
         public string Withdrawal(double withdrawal)
         {
-            if (balance - withdrawal >= overdraft)
+            if ((balance - withdrawal) >= overdraft)
             {
                 balance -= withdrawal;
                 return "Account: Investment.  Withdrawal:  $" + withdrawal + ".  Balance:  $" + balance + ".";

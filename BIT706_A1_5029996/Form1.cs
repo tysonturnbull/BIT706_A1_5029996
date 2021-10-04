@@ -20,8 +20,8 @@ namespace BIT706_A1_5029996
         List<String> OmniTransactions = new List<string>();
 
         Everyday edAcc = new Everyday(123.55);
-        Investment invAcc = new Investment(5023.3, 0.04, 10);
-        Omni omniAcc = new Omni(3023.12, 0.05, 10, -300);
+        Investment invAcc = new Investment(5023.3, 0.04);
+        Omni omniAcc = new Omni(3023.12, 0.05, -300);
 
         public Form1()
         {
